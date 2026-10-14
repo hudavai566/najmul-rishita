@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najmul ❤️ Rishita | Our Love Story</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+            padding-bottom: 50px;
+        }
+        header {
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 2.5rem; color: #d63384; margin-bottom: 10px; }
+        p { font-size: 1.1rem; color: #555; }
+        
+        /* Proposal Box */
+        .proposal-box {
+            background: #ffffff;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border: 2px solid #ff758c;
+        }
+        .proposal-box h2 {
+            color: #ff4757;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-yes { background: #ff4757; color: white; box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4); }
+        .btn-yes:hover { transform: scale(1.1); background: #ff6b81; }
+        .btn-no { background: #e0e0e0; color: #666; }
+        
+        #proposal-result {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: #d63384;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            margin: 30px auto;
+            padding: 20px;
+            background: #fff;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .timer { font-size: 2rem; color: #ff4757; font-weight: bold; margin-top: 10px; }
+
+        /* Gallery */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            width: 280px;
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            transition: transform 0.4s ease;
+        }
+        .card:hover { transform: translateY(-10px) scale(1.02); }
+        .card img { width: 100%; height: 280px; object-fit: cover; }
+        .card p { padding: 15px; font-weight: 500; color: #e84393; }
+
+        /* Love Letter */
+        .letter {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            text-align: left;
+        }
+        footer { padding: 20px; color: #777; font-size: 0.9rem; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>নাজমুল ❤️ রিশিতা</h1>
+        <p>আমাদের ভালোবাসার এক সুন্দর ডিজিটাল গল্প</p>
+    </header>
+
+    <!-- Special Proposal Section -->
+    <div class="proposal-box">
+        <h2>রিশিতা, তুমি কি সারাজীবন আমার পাশে এভাবে হাত ধরে থাকবে? 💖🌹</h2>
+        <div class="btn-container" id="btn-group">
+            <button class="btn btn-yes" onclick="acceptProposal()">হ্যাঁ, অবশ্যই! ❤️</button>
+            <button class="btn btn-no" onmouseover="moveNoButton()" id="no-btn">না 🙈</button>
+        </div>
+        <div id="proposal-result">
+            আই লাভ ইউ রিশিতা! ❤️ <br> তুমি আমার জীবনের সেরা উপহার! ✨💍
+        </div>
+    </div>
+
+    <!-- Countdown Section -->
+    <div class="countdown-container">
+        <h3>আমাদের ভালোবাসার কাউন্টডাউন ⏳</h3>
+        <div id="timer" class="timer">10</div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <h2 style="color: #d63384; margin-top: 30px;">আমাদের কিছু মিষ্টি মুহূর্ত 📸</h2>
+    <div class="gallery">
+        <div class="card"><img src="1744461129488.jpg" alt="Love Photo 1"><p>তোমার হাসিতে আমার পুরো পৃথিবী রঙিন ✨</p></div>
+        <div class="card"><img src="IMG_20250511_071312.jpg" alt="Love Photo 2"><p>জীবনের প্রতিটি পদক্ষেপে তোমাকে পাশে চাই ❤️</p></div>
+        <div class="card"><img src="IMG_20250530_162431.jpg" alt="Love Photo 3"><p>তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার 🎁</p></div>
+        <div class="card"><img src="IMG_20250530_162444.jpg" alt="Love Photo 4"><p>তোমার ভালোবাসাই আমার পথচলার শক্তি 💖</p></div>
+        <div class="card"><img src="IMG_20260325_163047.jpg" alt="Love Photo 5"><p>সবসময় এভাবেই হাতটি ধরে রেখো 🤝</p></div>
+        <div class="card"><img src="Screenshot_20261013-20473...jpg" alt="Love Photo 6"><p>আমার মনের গহীনে শুধুই তোমার নাম 🌹</p></div>
+    </div>
+
+    <!-- Love Letter Section -->
+    <div class="letter">
+        <h2 style="color: #e84393; margin-bottom: 15px; text-align: center;">প্রিয় রিশিতা ❤️</h2>
+        <p>
+            তুমি আমার জীবনের এমন এক আলো, যা প্রতিটি দিনকে নতুন করে সুন্দর করে তোলে। 
+            তোমার সাথে কাটানো প্রতিটি মুহূর্ত আমার কাছে অত্যন্ত মূল্যবান। 
+            আল্লাহ আমাদের এই মিষ্টি ভালোবাসাকে আজীবন এভাবে সুন্দর ও চিরসবুজ রাখুন। 
+            অনেক ভালোবাসি তোমাকে!
+        </p>
+        <p style="text-align: right; margin-top: 15px; font-weight: bold; color: #d63384;">- তোমার নাজমুল</p>
+    </div>
+
+    <footer>Made with ❤️ by Najmul for Rishita</footer>
+
+    <script>
+        // Proposal Logic
+        function acceptProposal() {
+            document.getElementById('btn-group').style.display = 'none';
+            document.getElementById('proposal-result').style.display = 'block';
+            
+            // Confetti Animation
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
+        }
+
+        function moveNoButton() {
+            const noBtn = document.getElementById('no-btn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        // Timer Logic
+        let count = 10;
+        const timerElement = document.getElementById('timer');
+        const interval = setInterval(() => {
+            count--;
+            if (count
